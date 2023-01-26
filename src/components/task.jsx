@@ -54,9 +54,9 @@ const Task = (key) => {
         <div>
             {
                 keys.map(value => {
-                    const task = JSON.parse(localStorage.getItem(value));
-                    const name = task.name;
-                    if(name.includes('task_')){
+                    if(value.includes('task_')){
+                        const task = JSON.parse(localStorage.getItem(value));
+                        const name = task.name;
                         const description = task.description;
                         const priority = task.priority;
                         const color = checkColor(priority);
