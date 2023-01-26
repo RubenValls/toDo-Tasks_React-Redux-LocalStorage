@@ -56,22 +56,24 @@ const Task = (key) => {
                 keys.map(value => {
                     const task = JSON.parse(localStorage.getItem(value));
                     const name = task.name;
-                    const description = task.description;
-                    const priority = task.priority;
-                    const color = checkColor(priority);
-                    const cardClass = `card m-3 `+ color;
-                    const idCard = "card_" + name;
-                    return(
-                        <div class={cardClass} id={idCard}>
-                            <div class="card-body">
-                                <h5 class="card-title">{name}</h5>
-                                <p class="card-text">{description}</p>
-                                <p class="card-text">Priority: {priority}</p>
-                                <button type="button" class="btn btn-success m-1" id={name} onClick={deleteTask}>Task Completed</button>
-                                <button type="button" class="btn btn-warning m-1" id={name} onClick={upgradeTask}>Upgrade priority</button>
+                    if(name.includes('task_')){
+                        const description = task.description;
+                        const priority = task.priority;
+                        const color = checkColor(priority);
+                        const cardClass = `card m-3 `+ color;
+                        const idCard = "card_" + name;
+                        return(
+                            <div class={cardClass} id={idCard}>
+                                <div class="card-body">
+                                    <h5 class="card-title">{name}</h5>
+                                    <p class="card-text">{description}</p>
+                                    <p class="card-text">Priority: {priority}</p>
+                                    <button type="button" class="btn btn-success m-1" id={name} onClick={deleteTask}>Task Completed</button>
+                                    <button type="button" class="btn btn-warning m-1" id={name} onClick={upgradeTask}>Upgrade priority</button>
+                                </div>
                             </div>
-                        </div>
-                    )
+                        )
+                    }
                 })
             }
         </div>
