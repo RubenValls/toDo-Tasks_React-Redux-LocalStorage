@@ -44,7 +44,7 @@ const NewTask = () => {
                     </select>
                 </div>
                 <div class="mb-3" id='btnSubmit'>
-                    <button class="btn btn-dark" type="submit">Add Task</button>
+                    <button class="btn btn-outline-dark" type="submit">Add Task</button>
                 </div>
             </form>
         </div>
