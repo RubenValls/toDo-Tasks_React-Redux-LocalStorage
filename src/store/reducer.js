@@ -1,4 +1,4 @@
-import {CHARGE_TASK, COMPLETE_TASK, PRIOR_TASK} from './Task/actions.js'
+import {CHARGE_TASK, COMPLETE_TASK, PRIOR_TASK, MINOR_TASK} from './Task/actions.js'
 
 export const taskReducer = (state = {}, action) => {
     switch(action.type){
@@ -41,6 +41,28 @@ export const taskReducer = (state = {}, action) => {
                     const alert = document.createElement('p');
                     alert.classList = 'maxPrio_'+cardID;
                     alert.innerHTML = 'The task already has maximum priority.'
+                    alertContainer.appendChild(alert);
+                }
+            }
+            return state;
+        case MINOR_TASK:
+            let minortask = localStorage.getItem('task_' + action.payload.taskName);
+            minortask = JSON.parse(minortask);
+            const minorCardID = "card_" + minortask.name
+            if(minortask.priority === 'A'){
+                minortask.priority = 'B';
+                localStorage.setItem('task_' + minortask.name, JSON.stringify(minortask));
+                window.location.reload(false);
+            }else if(minortask.priority === 'B'){
+                minortask.priority = 'C';
+                localStorage.setItem('task_' + minortask.name, JSON.stringify(minortask));
+                window.location.reload(false);
+            }else{
+                const alertContainer = document.querySelector(`#${minorCardID}`)
+                if(!document.querySelector(`.maxPrio_${minorCardID}`)){
+                    const alert = document.createElement('p');
+                    alert.classList = 'maxPrio_'+minorCardID;
+                    alert.innerHTML = 'The task already has minimum priority.'
                     alertContainer.appendChild(alert);
                 }
             }

@@ -37,6 +37,22 @@ const Task = (key) => {
         })
     }
 
+    function reduceTask(event){
+        event.preventDefault();
+        const {target} = event;
+        const taskName = target.id;
+        
+
+        let task = {
+            taskName,
+        }
+
+        store.dispatch({
+            type: 'MINOR_TASK',
+            payload: task
+        })
+    }
+
     function checkColor(priority){
         switch(priority){
             case 'A':
@@ -65,11 +81,12 @@ const Task = (key) => {
                         return(
                             <div class={cardClass} id={idCard}>
                                 <div class="card-body">
-                                    <h5 class="card-title">{name}</h5>
+                                    <h4 class="card-title">{name.toUpperCase()}</h4>
                                     <p class="card-text">{description}</p>
-                                    <p class="card-text">Priority: {priority}</p>
+                                    <p class="card-text">Priority: <strong>{priority}</strong></p>
                                     <button type="button" class="btn btn-success m-1" id={name} onClick={deleteTask}>Task Completed</button>
                                     <button type="button" class="btn btn-warning m-1" id={name} onClick={upgradeTask}>Upgrade priority</button>
+                                    <button type="button" class="btn btn-primary m-1" id={name} onClick={reduceTask}>Downgrade priority</button>
                                 </div>
                             </div>
                         )
