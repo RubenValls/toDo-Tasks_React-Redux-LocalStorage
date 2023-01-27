@@ -19,10 +19,12 @@ export const taskReducer = (state = {}, action) => {
                 }
             }
             return state;
+        
         case COMPLETE_TASK:
             localStorage.removeItem('task_' + action.payload.taskName);
             window.location.reload(false); 
             return state;
+        
         case PRIOR_TASK:
             let task = localStorage.getItem('task_' + action.payload.taskName);
             task = JSON.parse(task);
@@ -45,6 +47,7 @@ export const taskReducer = (state = {}, action) => {
                 }
             }
             return state;
+        
         case MINOR_TASK:
             let minortask = localStorage.getItem('task_' + action.payload.taskName);
             minortask = JSON.parse(minortask);
@@ -67,6 +70,7 @@ export const taskReducer = (state = {}, action) => {
                 }
             }
             return state;
+        
         default:
             return state;
     }

@@ -70,14 +70,14 @@ const Task = (key) => {
         <div>
             {
                 keys.map(value => {
+                    const task = JSON.parse(localStorage.getItem(value));
+                    const name = task.name;
+                    const description = task.description;
+                    const priority = task.priority;
+                    const color = checkColor(priority);
+                    const cardClass = `card m-3 `+ color;
+                    const idCard = "card_" + name;
                     if(value.includes('task_')){
-                        const task = JSON.parse(localStorage.getItem(value));
-                        const name = task.name;
-                        const description = task.description;
-                        const priority = task.priority;
-                        const color = checkColor(priority);
-                        const cardClass = `card m-3 `+ color;
-                        const idCard = "card_" + name;
                         return(
                             <div class={cardClass} id={idCard}>
                                 <div class="card-body">
